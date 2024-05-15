@@ -1,68 +1,98 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# fullstack-graphql-airbnb-clone
 
-## Available Scripts
+A Fullstack GraphQL Airbnb Clone with React and React Native.
 
-In the project directory, you can run:
+- Branches are in the order they were coded.
+- Watch how this was made: https://www.youtube.com/playlist?list=PLN3n1USn4xlnfJIQBa6bBjjiECnk6zL6s
+- This builds off the GraphQL Typescript Server I made: https://github.com/benawad/graphql-ts-server-boilerplate.
+- You can see the YouTube Playlist for how that was made here: https://www.youtube.com/playlist?list=PLN3n1USn4xlky9uj6wOhfsPez7KZOqm2V
+- Join the Discord: https://discord.gg/Vehs99V
 
-### `npm start`
+## Packages
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This project is made up of 5 packages that share code using Yarn Workspaces.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- web (React.js website)
+- app (React Native app)
+- server (GraphQL Typescript server)
+- common (Code shared between web, app, and server)
+- controller (Components shared between web and app)
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone project
 
-### `npm run build`
+```
+git clone https://github.com/benawad/fullstack-graphql-airbnb-clone.git
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. cd into folder
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```
+cd fullstack-graphql-airbnb-clone
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Download dependencies
 
-### `npm run eject`
+```
+yarn
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. Start PostgreSQL server
+5. Create database called `graphql-ts-server-boilerplate`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+createdb graphql-ts-server-boilerplate
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+6. [Add a user](https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e) with the username `postgres` and and no password. (You can change what these values are in the [ormconfig.json](https://github.com/benawad/graphql-ts-server-boilerplate/blob/master/ormconfig.json))
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+7. Connect to the database with `psql` and add the uuid extension:
 
-## Learn More
+```
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+``` 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+8. Install and start Redis
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+9. In `packages/server` create a file called `.env` and add the following line inside: `FRONTEND_HOST=http://localhost:3000`
 
-### Code Splitting
+10. Run `yarn build` in `packages/common`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+11. Run `yarn build` in `packages/controller`
 
-### Analyzing the Bundle Size
+12. Get Google Maps API key and put it here https://github.com/benawad/fullstack-graphql-airbnb-clone/blob/master/packages/web/public/index.html#L14 Videos doing that: https://youtu.be/-QQnzDVcTCo and https://youtu.be/xLlIgokKiLc
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+## Usage
 
-### Advanced Configuration
+1. Start server `yarn start` in `packages/server`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+2. Now you can run `yarn start` in `packages/web` or `packages/app` to start the website or app.
 
-### Deployment
+3. How to get credentials working in graphql playground: https://youtu.be/oM-EmNdhwI4?t=8m39s
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Deploy
 
-### `npm run build` fails to minify
+### Server
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+1. https://www.youtube.com/watch?v=qQAozc1MkdU
+2. https://www.youtube.com/watch?v=0t-rE5wUP-E
+
+### Website
+
+1. https://www.youtube.com/watch?v=FiU3SHEaFwk
+2. https://www.youtube.com/watch?v=vPu1sfuYFzw
+3. https://www.youtube.com/watch?v=Ry6Zobb-kaw
+
+## Features
+
+1. Website register/login
+2. Deploy backend and frontend
+3. App register/login
+4. Website and App forgot password
+5. Website and App create listing
+6. Website and App view listings
+7. logout
+8. Website chat
